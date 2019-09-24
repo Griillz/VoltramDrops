@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemPool {
 
-	Player p = null;
+	public Player p = null;
 	int tier = 0;
 	int items = 0;
 	HashMap<String, ItemStack> map = new HashMap<>(); // HashMap of ItemStacks

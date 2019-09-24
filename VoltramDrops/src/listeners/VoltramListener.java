@@ -1,4 +1,4 @@
-package main;
+package listeners;
 
 import java.util.Random;
 
@@ -21,6 +21,9 @@ import com.gmail.filoghost.holograms.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.HolographicDisplays;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
+
+import main.ItemPool;
+import main.LootCrate;
 
 public class VoltramListener implements Listener {
 	Boolean first = false;

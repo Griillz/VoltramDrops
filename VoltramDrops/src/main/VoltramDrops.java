@@ -1,12 +1,14 @@
 package main;
 
 import org.bukkit.Bukkit;
+
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
 import configfiles.CustomConfig;
+import listeners.VoltramListener;
 
 // Main class, Event Listeners and what not
 public class VoltramDrops extends JavaPlugin {
@@ -18,7 +20,7 @@ public class VoltramDrops extends JavaPlugin {
 		saveDefaultConfig();
 		
 		CustomConfig.setup();
-		CustomConfig.get().addDefault("Taco", "Rice");
+		CustomConfig.get().addDefault("MinForDrop", "2");
 		CustomConfig.get().options().copyDefaults(true);
 		CustomConfig.save();
 		

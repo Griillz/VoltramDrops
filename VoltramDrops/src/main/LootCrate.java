@@ -11,15 +11,15 @@ import org.bukkit.inventory.Inventory;
 
 public class LootCrate {
 
-	ArrayList<String> crates = new ArrayList<String>();
-	Block block = null;
-	String name = null;
-	Location loc = null;
-	Chest chest = null;
-	Inventory chestInv = null;
-	com.gmail.filoghost.holographicdisplays.api.Hologram hologram = null;
-	int tier = 0;
-	int items = 0;
+	public ArrayList<String> crates = new ArrayList<String>();
+	public Block block = null;
+	public String name = null;
+	public Location loc = null;
+	public Chest chest = null;
+	public Inventory chestInv = null;
+	public com.gmail.filoghost.holographicdisplays.api.Hologram hologram = null;
+	public int tier = 0;
+	public int items = 0;
 
 	public LootCrate() {
 
