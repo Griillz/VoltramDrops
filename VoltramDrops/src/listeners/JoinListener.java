@@ -13,12 +13,14 @@ public class JoinListener implements Listener {
 	
 	public boolean lootDrop = false;
 	public int numOnline = 0;
+	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		if(e.getPlayer() instanceof Player) {
 			numOnline += 1;
 			if(numOnline >= CustomConfig.get().getInt("MinForDrop")) {
 				lootDrop = true;
+				e.getPlayer().sendMessage("Online player count is " + numOnline + " config req is " + CustomConfig.get().getInt("MinForDrop"));
 			}
 		}
 	}
