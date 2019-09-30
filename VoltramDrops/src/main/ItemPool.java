@@ -3,23 +3,18 @@ package main;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Chest;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemPool {
-
-	public Player p = null;
-	int tier = 0;
-	int items = 0;
-	HashMap<String, ItemStack> map = new HashMap<>(); // HashMap of ItemStacks
-	Random rand = new Random();
-	LootCrate crate = new LootCrate();
+	
+	static HashMap<String, ItemStack> map = new HashMap<>(); // HashMap of ItemStacks
+	static Random rand = new Random();
 
 	// Puts desired items for itempool into hashmap
-	public void createPool() {
+	public static void createPool() {
 
 		map.put("1diamond", new ItemStack(Material.DIAMOND, 10));
 		map.put("1gold", new ItemStack(Material.GOLD_INGOT, 10));
@@ -45,70 +40,70 @@ public class ItemPool {
 	}
 
 	// Adds items to crates based off tier
-	public void addChest(LootCrate e) {
-		e.chest.update(true);
-		p.sendMessage("TIER IS " + e.tier);
-		for (int i = 0; i < e.items; i++) {
+	public static void addChest(LootCrate e) {
+		e.getChest().update(true);
+		Bukkit.broadcastMessage("TIER IS " + e.getTier());
+		for (int i = 0; i < e.getItems(); i++) {
 			int index = rand.nextInt(26) + 1;
-			p.sendMessage("INDEX IS " + index);
-			if (e.chestInv.getItem(index) != null) {
-				index = indexCheck(e.chestInv);
-				p.sendMessage("INDEX IS FROM METHOD" + index);
+			Bukkit.broadcastMessage("INDEX IS " + index);
+			if (e.getChestInv().getItem(index) != null) {
+				index = indexCheck(e.getChestInv());
+				Bukkit.broadcastMessage("INDEX IS FROM METHOD" + index);
 			}
 			int chance = rand.nextInt(100) + 1;
-			p.sendMessage("RAND VALUE " + chance);
-			if (e.tier == 1) {
+			Bukkit.broadcastMessage("RAND VALUE " + chance);
+			if (e.getTier() == 1) {
 				if (chance <= 30) {
-					e.chestInv.setItem(index, map.get("1wood"));
+					e.getChestInv().setItem(index, map.get("1wood"));
 				} else if (chance <= 55) {
-					e.chestInv.setItem(index, map.get("1stone"));
+					e.getChestInv().setItem(index, map.get("1stone"));
 				} else if (chance <= 70) {
-					e.chestInv.setItem(index, map.get("1coal"));
+					e.getChestInv().setItem(index, map.get("1coal"));
 				} else if (chance <= 83) {
-					e.chestInv.setItem(index, map.get("1gold"));
+					e.getChestInv().setItem(index, map.get("1gold"));
 				} else if (chance <= 92) {
-					e.chestInv.setItem(index, map.get("1diamond"));
+					e.getChestInv().setItem(index, map.get("1diamond"));
 				} else if (chance <= 100) {
-					e.chestInv.setItem(index, map.get("1emerald"));
+					e.getChestInv().setItem(index, map.get("1emerald"));
 				}
 			}
 
-			if (e.tier == 2) {
+			if (e.getTier() == 2) {
 				if (chance <= 30) {
-					e.chestInv.setItem(index, map.get("2wood"));
+					e.getChestInv().setItem(index, map.get("2wood"));
 				} else if (chance <= 55) {
-					e.chestInv.setItem(index, map.get("2stone"));
+					e.getChestInv().setItem(index, map.get("2stone"));
 				} else if (chance <= 70) {
-					e.chestInv.setItem(index, map.get("2coal"));
+					e.getChestInv().setItem(index, map.get("2coal"));
 				} else if (chance <= 83) {
-					e.chestInv.setItem(index, map.get("2gold"));
+					e.getChestInv().setItem(index, map.get("2gold"));
 				} else if (chance <= 92) {
-					e.chestInv.setItem(index, map.get("2diamond"));
+					e.getChestInv().setItem(index, map.get("2diamond"));
 				} else if (chance <= 100) {
-					e.chestInv.setItem(index, map.get("2emerald"));
+					e.getChestInv().setItem(index, map.get("2emerald"));
 				}
 			}
 
-			if (e.tier == 3) {
+			if (e.getTier() == 3) {
 				if (chance <= 30) {
-					e.chestInv.setItem(index, map.get("3wood"));
+					e.getChestInv().setItem(index, map.get("3wood"));
 				} else if (chance <= 55) {
-					e.chestInv.setItem(index, map.get("3stone"));
+					e.getChestInv().setItem(index, map.get("3stone"));
 				} else if (chance <= 70) {
-					e.chestInv.setItem(index, map.get("3coal"));
+					e.getChestInv().setItem(index, map.get("3coal"));
 				} else if (chance <= 83) {
-					e.chestInv.setItem(index, map.get("3gold"));
+					e.getChestInv().setItem(index, map.get("3gold"));
 				} else if (chance <= 92) {
-					e.chestInv.setItem(index, map.get("3diamond"));
+					e.getChestInv().setItem(index, map.get("3diamond"));
 				} else if (chance <= 100) {
-					e.chestInv.setItem(index, map.get("3emerald"));
+					e.getChestInv().setItem(index, map.get("3emerald"));
 				}
 			}
 		}
 	}
 
 	// If items is already in chest index, pick a new index
-	public int indexCheck(Inventory inv) {
+	public static int indexCheck(Inventory inv) {
 		Random rand = new Random();
 		int index = rand.nextInt(26) + 1;
 		if (inv.getItem(index) != null) {

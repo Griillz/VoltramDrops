@@ -6,19 +6,14 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import com.sk89q.worldedit.EmptyClipboardException;
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.extent.Extent;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.internal.annotation.Selection;
-import com.sk89q.worldedit.math.BlockVector3;
-import com.sk89q.worldedit.session.ClipboardHolder;
+
+import configfiles.DefaultConfig;
 
 public class CommandVD implements CommandExecutor {
 	
@@ -42,6 +37,8 @@ public class CommandVD implements CommandExecutor {
 		}
 		else if(label.equalsIgnoreCase("vd") && args[0].equals("create") && args.length >= 2) {
 			newRegion(p, args[1]);
+			VoltramDrops.plugin.getConfig().set("HasRegion", true);
+			VoltramDrops.plugin.saveConfig();
 			p.sendMessage(ChatColor.LIGHT_PURPLE + "REGION CREATED!");
 		}
 		return true;
@@ -62,7 +59,7 @@ public class CommandVD implements CommandExecutor {
 
 	    Location pos1 = BukkitAdapter.adapt(p.getWorld(), selection.getMinimumPoint());//Max
 	    Location pos2 = BukkitAdapter.adapt(p.getWorld(), selection.getMaximumPoint());//Min
-	    Region r = new Region(name, pos1.getBlockX() + .5, pos2.getBlockX() + .5, pos1.getBlockZ() + .5, pos2.getBlockZ() + .5, p);
+	    DefaultConfig.addRegion(name, pos1.getBlockX() + .5, pos2.getBlockX() + .5, pos1.getBlockZ() + .5, pos2.getBlockZ() + .5, p);
 	    p.sendMessage(name + " " + pos1.getBlockX() + " " + pos2.getBlockX() + " " + pos1.getBlockZ() + " " + pos2.getBlockZ());
 		}
 		catch(NullPointerException e) {

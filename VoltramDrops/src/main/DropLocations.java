@@ -9,19 +9,19 @@ import org.bukkit.World;
 
 public class DropLocations {
 	
-	ArrayList<Location> locations = new ArrayList<Location>();
+	private ArrayList<Location> locations = new ArrayList<Location>();
 	
 	public DropLocations(String name) {
 		makeDropLocs(name);
 	}
-	
+
 	public void makeDropLocs(String name) {
 		World world = Bukkit.getWorld(VoltramDrops.plugin.getConfig().getString("Regions." + name + ".world"));
 		System.out.println(name);
-		double minX = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".minX") + .5;
-		double maxX = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".maxX") + .5;
-		double minZ = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".minZ") + .5;
-		double maxZ = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".maxZ") + .5;
+		double minX = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".minX");
+		double maxX = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".maxX");
+		double minZ = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".minZ");
+		double maxZ = VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".maxZ");
 		boolean minXNeg = false;
 		boolean maxXNeg = false;
 		boolean minZNeg = false;
@@ -45,7 +45,7 @@ public class DropLocations {
 			if(minXNeg == true && maxXNeg == false) {
 				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = maxX + (minX * -1);
-				xPass = rand.nextInt((int) newNum) + 1;
+				xPass = rand.nextInt((int) newNum + 1);
 				if(xPass > maxX ) {
 					xPass = (xPass - maxX) * -1;
 				}
@@ -53,33 +53,33 @@ public class DropLocations {
 			else if(minXNeg == true && maxXNeg == true) {
 				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = (-1 * maxX) - (-1 * minX);
-				xPass = rand.nextInt((int) newNum) + 1;
+				xPass = rand.nextInt((int) newNum);
 				xPass = (minX + xPass) * -1;
 			}
 			else {
 				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = maxX - minX;
-				xPass = rand.nextInt((int) newNum) + 1;
+				xPass = rand.nextInt((int) newNum);
 				xPass = minX + xPass;
 			}
 			if(minZNeg == true && maxZNeg == false) {
 				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
-				double newNum = maxZ + (minX * -1);
-				zPass = rand.nextInt((int) newNum) + 1;
+				double newNum = maxZ + (minZ * -1);
+				zPass = rand.nextInt((int) newNum + 1);
 				if(zPass > maxZ ) {
 					zPass = (zPass - maxZ) * -1;
 				}
 			}
 			else if(minZNeg == true && maxZNeg == true) {
 				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
-				double newNum = (-1 * maxZ) - (-1 * minX);
-				zPass = rand.nextInt((int) newNum) + 1;
+				double newNum = (-1 * maxZ) - (-1 * minZ);
+				zPass = rand.nextInt((int) newNum);
 				zPass = (minZ + zPass) * -1;
 			}
 			else {
 				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
 				double newNum = maxZ - minZ;
-				zPass = rand.nextInt((int) newNum) + 1;
+				zPass = rand.nextInt((int) newNum);
 				zPass = minZ + zPass;
 			}
 				Location loc = new Location(Bukkit.getWorld("world"), xPass, VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".dropFromHeight"), zPass);
@@ -87,5 +87,15 @@ public class DropLocations {
 				System.out.println(loc);
 			}
 		}
+
+	public ArrayList<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(ArrayList<Location> locations) {
+		this.locations = locations;
+	}
+	
+	
 	}
 

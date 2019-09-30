@@ -1,2 +1,23 @@
-MinForDrop: 1
+#Only starts checking player count if you have at least one dropzone configured, DO NOT DELETE THIS
+HasRegion: false
+
+#DEFAULTS
+
+#Default number of players for drop event to start
+DefaultMinForDrops: 1
+
+#Default y value for crates to start dropping from
+DefaultDropFromHeight: 120
+
+#Default number of crates to spawn every drop event
+DefaultNumCrates: 6
+
+DefaultTime: 20
+
+
+
+
+
+
+#Regions you have defined
 Regions:
