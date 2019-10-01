@@ -8,9 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.plugin.Plugin;
 
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
@@ -19,17 +18,17 @@ import main.ItemPool;
 import main.LootCrate;
 
 public class CrateManager {
-	
+
 	static Plugin holoDisp = Bukkit.getServer().getPluginManager().getPlugin("HolographicDisplays");
 	public static List<LootCrate> crates = new ArrayList<LootCrate>();
 
-	public static void createNewCrate(Location loc) {
-		LootCrate crate = new LootCrate(genTier(), genItems());
+	public static void createNewCrate(Location loc, String name) {
+		LootCrate crate = new LootCrate(genTier(), genItems(), name);
 		crate.setTier(genTier());
 		crate.setLoc(loc.getBlock().getLocation());
 		crate.getLoc().getBlock().setType(Material.CHEST);
 		crate.setBlock(crate.getLoc().getBlock());
-		
+
 		crate.setChest((Chest) crate.getBlock().getState());
 		crate.setChestInv(crate.getChest().getInventory());
 		ItemPool.addChest(crate);
@@ -38,11 +37,12 @@ public class CrateManager {
 		crate.setHologram(HologramsAPI.createHologram(holoDisp, holo));
 		holo.add(-0.5, -2, -0.5);
 		crate.getHologram().appendTextLine(ChatColor.DARK_RED + "TIER " + ChatColor.YELLOW + crate.getTier());
-		
+
 		crates.add(crate);
-		
+
 	}
 	
+
 	public static void delCrate(LootCrate crate) {
 		crate.getChestInv().clear();
 		crate.getHologram().delete();
@@ -50,6 +50,14 @@ public class CrateManager {
 		crates.remove(crate);
 	}
 	
+	public static void delCrates() {
+		if(crates.size() != 0) {
+		for(LootCrate c : crates) {
+			delCrate(c);
+		}
+		}
+	}
+
 	// Generates create tier
 	public static int genTier() {
 		Random rand = new Random();

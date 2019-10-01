@@ -35,11 +35,14 @@ public class CommandVD implements CommandExecutor {
 			p.sendMessage(ChatColor.DARK_RED + "Please type in a name for your region!");
 			
 		}
-		else if(label.equalsIgnoreCase("vd") && args[0].equals("create") && args.length >= 2) {
+		else if(label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("create") && args.length >= 2) {
 			newRegion(p, args[1]);
 			VoltramDrops.plugin.getConfig().set("HasRegion", true);
 			VoltramDrops.plugin.saveConfig();
 			p.sendMessage(ChatColor.LIGHT_PURPLE + "REGION CREATED!");
+		}
+		else if(label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("delete") && args[2] != null) {
+			VoltramDrops.plugin.getConfig().set("Regions." + args[2], null);
 		}
 		return true;
 	}
@@ -51,8 +54,7 @@ public class CommandVD implements CommandExecutor {
 		try {
 			selection = worldEdit.getSession(p).getSelection(BukkitAdapter.adapt(p.getWorld()));
 		} catch (IncompleteRegionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			p.sendMessage(ChatColor.RED + "You do not have a region selected!");
 		}
 		
 		try {

@@ -42,16 +42,12 @@ public class ItemPool {
 	// Adds items to crates based off tier
 	public static void addChest(LootCrate e) {
 		e.getChest().update(true);
-		Bukkit.broadcastMessage("TIER IS " + e.getTier());
 		for (int i = 0; i < e.getItems(); i++) {
 			int index = rand.nextInt(26) + 1;
-			Bukkit.broadcastMessage("INDEX IS " + index);
 			if (e.getChestInv().getItem(index) != null) {
 				index = indexCheck(e.getChestInv());
-				Bukkit.broadcastMessage("INDEX IS FROM METHOD" + index);
 			}
 			int chance = rand.nextInt(100) + 1;
-			Bukkit.broadcastMessage("RAND VALUE " + chance);
 			if (e.getTier() == 1) {
 				if (chance <= 30) {
 					e.getChestInv().setItem(index, map.get("1wood"));

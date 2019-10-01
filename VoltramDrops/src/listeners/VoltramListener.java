@@ -23,9 +23,11 @@ public class VoltramListener implements Listener {
 		if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
 			if (e.getClickedBlock().getType().equals(Material.CHEST)) {
 				for (LootCrate crate : CrateManager.crates) {
-					System.out.println(crate.getLoc() + " - crate loc " + e.getClickedBlock().getLocation() + " - clicked loc");
-					if (crate.getLoc().getX() == e.getClickedBlock().getLocation().getX() && crate.getLoc().getY() == e.getClickedBlock().getLocation().getY() &&
-							crate.getLoc().getZ() == e.getClickedBlock().getLocation().getZ()) {
+					System.out.println(
+							crate.getLoc() + " - crate loc " + e.getClickedBlock().getLocation() + " - clicked loc");
+					if (crate.getLoc().getX() == e.getClickedBlock().getLocation().getX()
+							&& crate.getLoc().getY() == e.getClickedBlock().getLocation().getY()
+							&& crate.getLoc().getZ() == e.getClickedBlock().getLocation().getZ()) {
 						System.out.println(crate.getName());
 						CrateManager.delCrate(crate);
 						return;
@@ -37,15 +39,12 @@ public class VoltramListener implements Listener {
 
 	// Makes a new LootCrate Object when chest is placed
 	/*
-	@EventHandler
-	public void onPlaceChest(BlockPlaceEvent e) {
-		if (e.getBlockPlaced().getType().equals(Material.CHEST)) {
-			CrateManager crateManager = new CrateManager();
-			crateManager.createNewCrate(e);
-
-		}
-	}
-	*/
+	 * @EventHandler public void onPlaceChest(BlockPlaceEvent e) { if
+	 * (e.getBlockPlaced().getType().equals(Material.CHEST)) { CrateManager
+	 * crateManager = new CrateManager(); crateManager.createNewCrate(e);
+	 * 
+	 * } }
+	 */
 
 	public HolographicDisplays getHolo() {
 		Plugin p = Bukkit.getServer().getPluginManager().getPlugin("HolographicDisplays");

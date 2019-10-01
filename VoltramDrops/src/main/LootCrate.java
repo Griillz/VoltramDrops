@@ -22,16 +22,17 @@ public class LootCrate {
 
 	}
 
-	public LootCrate(int tier, int items) {
+	public LootCrate(int tier, int items, String dropLoc) {
+		int i = CrateManager.crates.size();
 		this.tier = tier;
 		this.items = items;
-		setName(this);
+		this.name = dropLoc + i;
 
 	}
-	
+
 	public void setName(LootCrate e) {
 		int i = CrateManager.crates.size();
-		this.name = "Crate " + i;
+		this.name = "Crate " + i + " " + name;
 	}
 
 	public Block getBlock() {
@@ -97,9 +98,5 @@ public class LootCrate {
 	public void setItems(int items) {
 		this.items = items;
 	}
-	
-	
-	
-	
 
 }

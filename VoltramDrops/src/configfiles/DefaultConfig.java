@@ -56,6 +56,7 @@ public class DefaultConfig {
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".numCrates", VoltramDrops.plugin.getConfig().getInt("DefaultNumCrates"));
 		System.out.println("7");
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".MinForDrops", VoltramDrops.plugin.getConfig().getInt("DefaultMinForDrops"));
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".NoNoBlock", VoltramDrops.plugin.getConfig().getString("DefaultNoNoBlock"));
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".time", VoltramDrops.plugin.getConfig().getInt("DefaultTime"));
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".name", regionName);
 		System.out.println("8");

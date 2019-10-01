@@ -12,6 +12,8 @@ DefaultDropFromHeight: 120
 #Default number of crates to spawn every drop event
 DefaultNumCrates: 6
 
+DefaultNoNoblock: Bedrock
+
 DefaultTime: 20
 
 
