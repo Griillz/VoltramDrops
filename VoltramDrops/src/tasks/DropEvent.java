@@ -37,14 +37,19 @@ public class DropEvent extends BukkitRunnable {
 
 			@Override
 			public void run() {
-					new DropEvent(name, time, count, plugin).run();
-					CrateManager.delCrates();
-				
-
+				new DropEvent(name, time, count, plugin).run();
 
 			}
 
 		}.runTaskLater(plugin, time * 20);
+
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				CrateManager.delCrates(name);
+			}
+		}.runTaskLater(plugin, time * 10);
 
 	}
 

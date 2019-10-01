@@ -1,6 +1,7 @@
 package managers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -9,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
-import org.bukkit.entity.FallingBlock;
 import org.bukkit.plugin.Plugin;
 
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
@@ -41,7 +41,6 @@ public class CrateManager {
 		crates.add(crate);
 
 	}
-	
 
 	public static void delCrate(LootCrate crate) {
 		crate.getChestInv().clear();
@@ -49,13 +48,26 @@ public class CrateManager {
 		crate.getBlock().setType(Material.AIR);
 		crates.remove(crate);
 	}
-	
-	public static void delCrates() {
-		if(crates.size() != 0) {
-		for(LootCrate c : crates) {
-			delCrate(c);
+
+	public static void delCrates(String name) {
+		if (crates.size() != 0) {
+			for (LootCrate c : crates) {
+				//System.out.println(c.getName() + " " + c.getLoc());
+				if (c.getName().contains(name)) {
+					c.getChestInv().clear();
+					c.getHologram().delete();
+					c.getBlock().setType(Material.AIR);
+				}
+			}
+			for(int i = 0; i < crates.size(); i++) {
+				if(crates.get(i).getName().contains(name)) {
+					crates.remove(i);
+					i--;
+					
+				}
+			}
 		}
-		}
+		System.out.println(crates.size() + " crates size after removal!");
 	}
 
 	// Generates create tier
@@ -80,4 +92,5 @@ public class CrateManager {
 		Random rando = new Random();
 		return rando.nextInt(6) + 1;
 	}
+
 }
