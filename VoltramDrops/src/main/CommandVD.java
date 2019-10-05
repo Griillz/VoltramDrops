@@ -38,8 +38,18 @@ public class CommandVD implements CommandExecutor {
 				VoltramDrops.plugin.getConfig().set("HasRegion", true);
 				VoltramDrops.plugin.saveConfig();
 				p.sendMessage(ChatColor.LIGHT_PURPLE + "REGION CREATED!");
-			} else if (label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("delete") && args[2] != null) {
-				VoltramDrops.plugin.getConfig().set("Regions." + args[2], null);
+			} else if (label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("delete") && args[1] != null) {
+				VoltramDrops.plugin.getConfig().set("Regions." + args[1], null);
+			}
+
+			else if (label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("additem") && args[1] != null
+					&& args[2] != null && args[3] != null) {
+				DefaultConfig.addItem(args[1], args[3], args[2], p);
+
+			} else if (label.equalsIgnoreCase("vd") && args[0].equalsIgnoreCase("additem") && args[1] == null
+					|| args[2] == null || args[2] == null) {
+				p.sendMessage(ChatColor.DARK_RED + "Insufficience Arguments");
+
 			}
 			return true;
 		} else {
@@ -66,7 +76,7 @@ public class CommandVD implements CommandExecutor {
 			p.sendMessage(name + " " + pos1.getBlockX() + " " + pos2.getBlockX() + " " + pos1.getBlockZ() + " "
 					+ pos2.getBlockZ());
 		} catch (NullPointerException e) {
-			System.out.println("SOMEHOW NULL??????????");
+
 		}
 
 	}

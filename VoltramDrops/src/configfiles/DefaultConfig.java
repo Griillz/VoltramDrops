@@ -19,14 +19,9 @@ public class DefaultConfig {
 			justCreated = true;
 			
 		}
-/*
-		VoltramDrops.plugin.getConfig().addDefault("MinForDrop", 1);
-		VoltramDrops.plugin.getConfig().addDefault("Regions", "//List of Regions");
-		//VoltramDrops.plugin.getConfig().addDefault("Regions.Region", region.regions);
-		 
-		 */
+
 		try {
-		if(justCreated == false) {
+		if(!justCreated) {
 		for (String i : VoltramDrops.plugin.getConfig().getConfigurationSection("Regions").getKeys(false)) {
 			VoltramDrops.plugin.getConfig().set("Regions." + i + ".enabled", false);
 		}
@@ -65,9 +60,35 @@ public class DefaultConfig {
 		System.out.println("9");
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".enabled", false);
 		System.out.println("10");
-		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".items", "-empty");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1.Diamond", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1.Diamond.name", "diamond");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1.Diamond.minamount", 1);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1.Diamond.maxamount", 10);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier1.Diamond.chance", 100);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2.Diamond", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2.Diamond.name", "diamond");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2.Diamond.minamount", 10);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2.Diamond.maxamount", 20);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier2.Diamond.chance", 100);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3.Diamond", "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3.Diamond.name", "diamond");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3.Diamond.minamount", 20);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3.Diamond.maxamount", 30);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".tier3.Diamond.chance", 100);
+
 		VoltramDrops.plugin.saveConfig();
 		System.out.println("11");
 	}
+	
+	public static void addItem(String regionName, String tier, String itemName, Player p) {
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + "tier" + tier + "." + itemName, "");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + "tier" + tier + "." + itemName + ".name", p.getInventory().getItemInMainHand().getType());
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + "tier" + tier + "." + itemName + ".minamount", 10);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + "tier" + tier + "." + itemName + ".maxamount", 20);
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + "tier" + tier + "." + itemName + ".chance", 100);
+		}
 
 }

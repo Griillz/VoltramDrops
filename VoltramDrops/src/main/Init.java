@@ -7,8 +7,11 @@ import tasks.DropEvent;
 
 public class Init {
 	public static void init() {
-		ItemPool.createPool();
+
 		DefaultConfig.defaultSetup();
+		if(VoltramDrops.plugin.getConfig().get("HasRegion").equals("true")) {
+		ItemPool.createPool();
+		}
 
 		ArrayList<String> regionNames = new ArrayList<String>();
 		try {
