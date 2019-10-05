@@ -15,7 +15,7 @@ public class DropEvent extends BukkitRunnable {
 	int count = 0;
 	int time = 0;
 	String name = "";
-	static boolean first = true;
+	boolean spawned = false;
 
 	public DropEvent(String name, int time, int count, VoltramDrops plugin) {
 		this.plugin = plugin;
@@ -41,7 +41,7 @@ public class DropEvent extends BukkitRunnable {
 
 			}
 
-		}.runTaskLater(plugin, time * 20);
+		}.runTaskLater(plugin, VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".spawntime") * 20);
 
 		new BukkitRunnable() {
 
@@ -49,7 +49,7 @@ public class DropEvent extends BukkitRunnable {
 			public void run() {
 				CrateManager.delCrates(name);
 			}
-		}.runTaskLater(plugin, time * 10);
+		}.runTaskLater(plugin, VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".cratedespawntime") * 20);
 
 	}
 

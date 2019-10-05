@@ -16,6 +16,8 @@ DefaultNoNoblock: Bedrock
 
 DefaultTime: 20
 
+CrateDespawnDefaultTime: 10
+
 
 
 

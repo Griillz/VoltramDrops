@@ -46,37 +46,31 @@ public class DropLocations {
 		Random rand = new Random();
 		for (int i = 0; i < VoltramDrops.plugin.getConfig().getInt("Regions." + name + ".numCrates"); i++) {
 			if (minXNeg == true && maxXNeg == false) {
-				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = maxX + (minX * -1);
 				xPass = rand.nextInt((int) newNum + 1);
 				if (xPass > maxX) {
 					xPass = (xPass - maxX) * -1;
 				}
 			} else if (minXNeg == true && maxXNeg == true) {
-				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = (-1 * maxX) - (-1 * minX);
 				xPass = rand.nextInt((int) newNum);
 				xPass = (minX + xPass) * -1;
 			} else {
-				System.out.println("Here for " + name + " minXNeg == " + minXNeg + " maxXNeg " + maxXNeg);
 				double newNum = maxX - minX;
 				xPass = rand.nextInt((int) newNum);
 				xPass = minX + xPass;
 			}
 			if (minZNeg == true && maxZNeg == false) {
-				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
 				double newNum = maxZ + (minZ * -1);
 				zPass = rand.nextInt((int) newNum + 1);
 				if (zPass > maxZ) {
 					zPass = (zPass - maxZ) * -1;
 				}
 			} else if (minZNeg == true && maxZNeg == true) {
-				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
 				double newNum = (-1 * maxZ) - (-1 * minZ);
 				zPass = rand.nextInt((int) newNum);
 				zPass = (minZ + zPass) * -1;
 			} else {
-				System.out.println("Here for " + name + " minZNeg == " + minZNeg + " maxZNeg " + maxZNeg);
 				double newNum = maxZ - minZ;
 				zPass = rand.nextInt((int) newNum);
 				zPass = minZ + zPass;
@@ -90,7 +84,6 @@ public class DropLocations {
 			if (!(loc.getBlock().getType().equals(VoltramDrops.plugin.getConfig().getString("Regions." + name + ".NoNoBlock")))) {
 				loc.setY(loc.getBlockY() + 1);
 				locations.add(loc);
-				System.out.println(loc);
 			} else {
 				i--;
 			}

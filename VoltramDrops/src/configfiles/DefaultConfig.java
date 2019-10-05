@@ -57,13 +57,15 @@ public class DefaultConfig {
 		System.out.println("7");
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".MinForDrops", VoltramDrops.plugin.getConfig().getInt("DefaultMinForDrops"));
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".NoNoBlock", VoltramDrops.plugin.getConfig().getString("DefaultNoNoBlock"));
-		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".time", VoltramDrops.plugin.getConfig().getInt("DefaultTime"));
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".spawntime", VoltramDrops.plugin.getConfig().getInt("DefaultTime"));
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".cratedespawntime", VoltramDrops.plugin.getConfig().getInt("CrateDespawnDefaultTime"));
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".name", regionName);
 		System.out.println("8");
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".world", p.getWorld().getName());
 		System.out.println("9");
 		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".enabled", false);
 		System.out.println("10");
+		VoltramDrops.plugin.getConfig().set("Regions." + regionName + ".items", "-empty");
 		VoltramDrops.plugin.saveConfig();
 		System.out.println("11");
 	}
